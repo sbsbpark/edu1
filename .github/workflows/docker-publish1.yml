@@ -68,7 +68,7 @@ jobs:
         with:
       #   images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       #   images: ${{ github.repository }}
-          images: https://hub.docker.com/repository/docker/sbsbpark/edu1
+          images: http://github.com/sbsbpark/edu1
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
