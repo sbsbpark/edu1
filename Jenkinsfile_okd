@@ -20,14 +20,14 @@ podTemplate(label: label, serviceAccount: 'jenkins-admin', namespace: 'edu8',
        stage('Clone Git Project') {
             sh "pwd"
             echo 'Clone'
-            git branch: 'master', credentialsId: 'edu', url: 'https://github.com/sbsbpark/edu1.git'
+            git branch: 'master', credentialsId: 'github_ci', url: 'https://github.com/sbsbpark/edu1.git'
             sh "ls"
         }
                              // podman login -u ${USERNAME} -p ${PASSWORD} --log-level=debug ${docker_registry} --tls-verify=false
 
         stage('Build with Podman') {
                 container('podman') {
-                  withCredentials([usernamePassword(credentialsId: 'harbor_ci',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')]) {
+                  withCredentials([usernamePassword(credentialsId: 'edu',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')]) {
                      sh  """
                      ls -al /etc/containers
                      podman login -u ${USERNAME} -p ${PASSWORD} --log-level=debug ${docker_registry}  --tls-verify=false
